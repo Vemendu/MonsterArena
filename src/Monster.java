@@ -1,3 +1,6 @@
+import java.util.LinkedList;
+import java.util.List;
+
 public abstract class Monster {
 
     //fields
@@ -5,14 +8,17 @@ public abstract class Monster {
     private int hp;
     private int protection; //reduces attack's damage in percent proportion
     private int dodge; //increases a chance of evading an incoming attack
-    IAttackBehaviour attack1Behaviour;
-    IAttackBehaviour attack2Behaviour;
-
+    private int bonusDamage;
+    List<IAttackBehaviour> listOfAttacks = new LinkedList<>();
+    IWeaponBehaviour weaponBehaviour;
     //constructors
-    public Monster(IAttackBehaviour attack1Behaviour, IAttackBehaviour attack2Behaviour)
+    public Monster(List<IAttackBehaviour> listOfAttacks, IWeaponBehaviour weaponBehaviour)
     {
-        this.attack1Behaviour = attack1Behaviour;
-        this.attack2Behaviour = attack2Behaviour;
+        for (IAttackBehaviour attack:  listOfAttacks
+             ) {
+            this.listOfAttacks.add(attack);
+        }
+        this.weaponBehaviour = weaponBehaviour;
     }
 
     public Monster()
@@ -26,7 +32,8 @@ public abstract class Monster {
     {
         System.out.println("The fight between "+ this.getName() +" and " + monster.getName() + " is starting!\n");
         Thread.sleep(2000);
-
+        this.weaponBehaviour.equip(this);
+        monster.weaponBehaviour.equip(monster);
         if((int)(Math.random()*2)==1)
         {
             System.out.println(this.getName()+" moves first!\n");
@@ -34,10 +41,7 @@ public abstract class Monster {
 
             while(this.hp>0 && monster.hp>0)
             {
-                if((int)(Math.random()*2)==1)
-                    this.attack2Behaviour.attack(monster);
-                else
-                    this.attack1Behaviour.attack(monster);
+                this.listOfAttacks.get((int)(Math.random()*listOfAttacks.size())).attack(this, monster);
                 Thread.sleep(2000);
 
                 if(monster.getHp()<=0)
@@ -47,10 +51,7 @@ public abstract class Monster {
                     break;
                 }
 
-                if((int)(Math.random()*2)==1)
-                    monster.attack2Behaviour.attack(this);
-                else
-                    monster.attack1Behaviour.attack(this);
+                monster.listOfAttacks.get((int)(Math.random()*listOfAttacks.size())).attack(monster, this);
                 Thread.sleep(2000);
 
                 if(this.getHp()<=0)
@@ -66,10 +67,7 @@ public abstract class Monster {
             Thread.sleep(2000);
             while(this.hp>0 && monster.hp>0)
             {
-                if((int)(Math.random()*2)==1)
-                    monster.attack2Behaviour.attack(this);
-                else
-                    monster.attack1Behaviour.attack(this);
+                monster.listOfAttacks.get((int)(Math.random()*listOfAttacks.size())).attack(monster, this);
                 Thread.sleep(2000);
                 if(this.getHp()<=0)
                 {
@@ -77,10 +75,7 @@ public abstract class Monster {
                             "The remaining hp is = " + monster.getHp());
                     break;
                 }
-                if((int)(Math.random()*2)==1)
-                    this.attack2Behaviour.attack(monster);
-                else
-                    this.attack1Behaviour.attack(monster);
+                this.listOfAttacks.get((int)(Math.random()*listOfAttacks.size())).attack(this, monster);
                 Thread.sleep(2000);
                 if(monster.getHp()<=0)
                 {
@@ -126,5 +121,13 @@ public abstract class Monster {
 
     public void setDodge(int dodge) {
         this.dodge = dodge;
+    }
+
+    public int getBonusDamage() {
+        return bonusDamage;
+    }
+
+    public void setBonusDamage(int bonusDamage) {
+        this.bonusDamage = bonusDamage;
     }
 }

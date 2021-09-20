@@ -1,7 +1,13 @@
+import sun.awt.image.ImageWatched;
+
+import java.util.Arrays;
+import java.util.LinkedList;
+import java.util.List;
+
 public class Lizard extends Monster{
-    public Lizard(String name)
+    public Lizard(String name, IWeaponBehaviour weaponBehaviour)
     {
-        super(new AttackSimple(), new AttackSpeedSlash());
+        super(Arrays.asList(new AttackSimple(), new AttackSpeedSlash()), weaponBehaviour);
         this.setName("The Fastest "+name);
         this.setHp(110);
         this.setProtection(10);
