@@ -1,14 +1,14 @@
 import java.util.Arrays;
 
 public class Dwarf extends Monster{
-    public Dwarf(String name, IWeaponBehaviour weaponBehaviour)
+    public Dwarf(String name, IGearBehaviour weaponBehaviour, IGearBehaviour armorBehaviour)
     {
-        super(Arrays.asList(new AttackSimple(), new AttackMightyCrash()), weaponBehaviour);
+        super(Arrays.asList(new AttackSimple(), new AttackMightyCrash()), weaponBehaviour, armorBehaviour);
         this.setName("The Mightiest "+name);
         this.setHp(90);
         this.setProtection(25);
         this.setDodge(10);
-
+        this.setAccuracy(100);
     }
     public void checkMonster()
     {

@@ -2,7 +2,7 @@ public class AttackSimple implements IAttackBehaviour{
     @Override
     public void attack(Monster monster1, Monster monster2)
     {
-        int accuracy = 100-monster2.getDodge();
+        int accuracy = monster1.getAccuracy()-monster2.getDodge();
         if((int)(Math.random()*100)>accuracy)
         {
             System.out.println(monster2.getName() + " avoided the Simple Attack!");

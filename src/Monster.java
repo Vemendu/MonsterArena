@@ -9,16 +9,18 @@ public abstract class Monster {
     private int protection; //reduces attack's damage in percent proportion
     private int dodge; //increases a chance of evading an incoming attack
     private int bonusDamage;
+    private int accuracy;
     List<IAttackBehaviour> listOfAttacks = new LinkedList<>();
-    IWeaponBehaviour weaponBehaviour;
+    IGearBehaviour swordBehaviour, armorBehaviour;
     //constructors
-    public Monster(List<IAttackBehaviour> listOfAttacks, IWeaponBehaviour weaponBehaviour)
+    public Monster(List<IAttackBehaviour> listOfAttacks, IGearBehaviour swordBehaviour, IGearBehaviour armorBehaviour)
     {
         for (IAttackBehaviour attack:  listOfAttacks
              ) {
             this.listOfAttacks.add(attack);
         }
-        this.weaponBehaviour = weaponBehaviour;
+        this.swordBehaviour = swordBehaviour;
+        this.armorBehaviour = armorBehaviour;
     }
 
     public Monster()
@@ -32,8 +34,10 @@ public abstract class Monster {
     {
         System.out.println("The fight between "+ this.getName() +" and " + monster.getName() + " is starting!\n");
         Thread.sleep(2000);
-        this.weaponBehaviour.equip(this);
-        monster.weaponBehaviour.equip(monster);
+        this.swordBehaviour.equip(this);
+        monster.swordBehaviour.equip(monster);
+        this.armorBehaviour.equip(this);
+        monster.armorBehaviour.equip(monster);
         if((int)(Math.random()*2)==1)
         {
             System.out.println(this.getName()+" moves first!\n");
@@ -129,5 +133,13 @@ public abstract class Monster {
 
     public void setBonusDamage(int bonusDamage) {
         this.bonusDamage = bonusDamage;
+    }
+
+    public int getAccuracy() {
+        return accuracy;
+    }
+
+    public void setAccuracy(int accuracy) {
+        this.accuracy = accuracy;
     }
 }
