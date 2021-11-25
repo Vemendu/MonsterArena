@@ -1,4 +1,8 @@
-public class AttackSimple implements IAttackBehaviour{
+package Attacks;
+
+import Monsters.Monster;
+
+public class AttackSimple implements IAttackBehaviour {
     @Override
     public void attack(Monster monster1, Monster monster2)
     {

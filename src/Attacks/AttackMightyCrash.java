@@ -1,4 +1,8 @@
-public class AttackMightyCrash implements IAttackBehaviour{
+package Attacks;
+
+import Monsters.Monster;
+
+public class AttackMightyCrash implements IAttackBehaviour {
     @Override
     public void attack(Monster monster1, Monster monster2)
     {
