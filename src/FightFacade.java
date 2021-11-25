@@ -238,6 +238,8 @@ public class FightFacade {
     //When user chooses Arena option
     public Monster createCharacter() throws IOException
     {
+        boolean checker = false;
+        boolean checker1 = true;
         Monster character = null;
         int raceIndex = -1;
         int weaponIndex = -1;
@@ -246,62 +248,82 @@ public class FightFacade {
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
         System.out.println("Choose your character's name: ");
         name = reader.readLine();
-        System.out.println("Choose your character's race: \n" +
-                "1. Lizard \n" +
-                "2. Dwarf \n");
-        String userInput = reader.readLine();
+
+        String userInput;
         int userInputInt;
-        try {
-            userInputInt = Integer.parseInt(userInput);
-            switch (userInputInt) {
-                case 1: raceIndex=1; break;
-                case 2: raceIndex=2; break;
-                default:
-                    System.out.println("Impossible choice.");
+        while(!checker){
+            try {
+                System.out.println("Choose your character's race: \n" +
+                        "1. Lizard \n" +
+                        "2. Dwarf \n");
+                userInput = reader.readLine();
+                userInputInt = Integer.parseInt(userInput);
+                switch (userInputInt) {
+                    case 1: raceIndex=1; checker1 = true; break;
+                    case 2: raceIndex=2; checker1 = true; break;
+                    default:
+                        System.out.println("Impossible choice."); checker1 = false;
+                }
+                if(checker1)
+                    checker = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println("Please, enter just the number \n");
             }
         }
-        catch (Exception e)
+        checker = false;
+        while (!checker)
         {
-            System.out.println("Please, enter just the number + \n");
-        }
-        System.out.println("Choose your character's weapon: \n" +
-                "1. Long Sword \n" +
-                "2. Short Sword \n" +
-                "3. Wooden Sword");
-        userInput = reader.readLine();
-        try {
-            userInputInt = Integer.parseInt(userInput);
-            switch (userInputInt) {
-                case 1: weaponIndex=1; break;
-                case 2: weaponIndex=2; break;
-                case 3: weaponIndex=3; break;
-                default:
-                    System.out.println("Impossible choice.");
+            System.out.println("Choose your character's weapon: \n" +
+                    "1. Long Sword \n" +
+                    "2. Short Sword \n" +
+                    "3. Wooden Sword");
+            userInput = reader.readLine();
+            try {
+                userInputInt = Integer.parseInt(userInput);
+                switch (userInputInt) {
+                    case 1: weaponIndex=1; checker1 = true; break;
+                    case 2: weaponIndex=2; checker1 = true; break;
+                    case 3: weaponIndex=3; checker1 = true; break;
+                    default:
+                        System.out.println("Impossible choice."); checker1 = false;
+                }
+                if(checker1)
+                    checker = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println("Please, enter just the number \n");
             }
         }
-        catch (Exception e)
+        checker = false;
+        while (!checker)
         {
-            System.out.println("Please, enter just the number + \n");
-        }
-        System.out.println("Choose your character's armor: \n" +
-                "1. Steel Armor \n" +
-                "2. Chainmail Armor \n" +
-                "3. Leather Armor");
-        userInput = reader.readLine();
-        try {
-            userInputInt = Integer.parseInt(userInput);
-            switch (userInputInt) {
-                case 1: armorIndex=1; break;
-                case 2: armorIndex=2; break;
-                case 3: armorIndex=3; break;
-                default:
-                    System.out.println("Impossible choice.");
+            System.out.println("Choose your character's armor: \n" +
+                    "1. Steel Armor \n" +
+                    "2. Chainmail Armor \n" +
+                    "3. Leather Armor");
+            userInput = reader.readLine();
+            try {
+                userInputInt = Integer.parseInt(userInput);
+                switch (userInputInt) {
+                    case 1: armorIndex=1; checker1 = true; break;
+                    case 2: armorIndex=2; checker1 = true; break;
+                    case 3: armorIndex=3; checker1 = true; break;
+                    default:
+                        System.out.println("Impossible choice."); checker1 = false;
+                }
+                if(checker1)
+                    checker = true;
+            }
+            catch (Exception e)
+            {
+                System.out.println("Please, enter just the number \n");
             }
         }
-        catch (Exception e)
-        {
-            System.out.println("Please, enter just the number + \n");
-        }
+        checker = false;
+
         switch (raceIndex) {
             case 1: switch (weaponIndex) {
                 case 1: switch (armorIndex) {

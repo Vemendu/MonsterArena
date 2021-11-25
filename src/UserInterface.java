@@ -3,7 +3,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 
 public class UserInterface {
-    public UserInterface() throws IOException, InterruptedException
+    public UserInterface() throws IOException
     {
         FightFacade fightFacade = new FightFacade();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
