@@ -1,3 +1,7 @@
+import Factory.DwarfFactory;
+import Factory.LizardFactory;
+import Monsters.Dwarf;
+import Monsters.Lizard;
 import Monsters.Monster;
 
 public class FightFacade {
@@ -62,5 +66,28 @@ public class FightFacade {
                 }
             }
         }
+    }
+    public void randomFight() throws InterruptedException
+    {
+        LizardFactory factoryLizard = new LizardFactory();
+        DwarfFactory factoryDwarf = new DwarfFactory();
+        int randomNumber = (int)(Math.random()*3);
+        Lizard lizard = null;
+        Dwarf dwarf = null;
+        switch (randomNumber) {
+            case 0: lizard = factoryLizard.createWeakMonster(); break;
+            case 1: lizard = factoryLizard.createNormalMonster(); break;
+            case 2: lizard = factoryLizard.createStrongMonster(); break;
+            default:
+        }
+        randomNumber = (int) (Math.random()*3);
+        switch (randomNumber) {
+            case 0: dwarf = factoryDwarf.createWeakMonster(); break;
+            case 1: dwarf = factoryDwarf.createNormalMonster(); break;
+            case 2: dwarf = factoryDwarf.createStrongMonster(); break;
+            default: break;
+        }
+        fight(lizard, dwarf);
+        System.out.println("\n");
     }
 }

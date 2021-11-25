@@ -11,10 +11,10 @@ import Monsters.Monster;
 
 public class DwarfFactory implements IMonsterFactory{
     public Dwarf createStrongMonster(){
-        return new Dwarf("Strong Dwarf", new WeaponLongSword(), new ArmorSteel());
+        return new Dwarf("Armored Dwarf", new WeaponLongSword(), new ArmorSteel());
     }
     public Dwarf createNormalMonster(){
-        return new Dwarf("Common Dwarf", new WeaponShortSword(), new ArmorChainmail());
+        return new Dwarf("Agile Dwarf", new WeaponShortSword(), new ArmorChainmail());
     }
     public Dwarf createWeakMonster(){
         return new Dwarf("Weakling Dwarf", new WeaponWoodenSword(), new ArmorLeather());
