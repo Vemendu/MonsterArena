@@ -9,7 +9,7 @@ public class WeaponLongSword implements IGearBehaviour {
     {
         monster.addBonusDamage(15);
         monster.addDodge(-20);
-        monster.addAccuracy(-10);
+        monster.addAccuracy(-20);
         System.out.println(monster.getName() + " equipped Long Sword!\n");
     }
 }

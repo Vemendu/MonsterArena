@@ -3,6 +3,7 @@ package Attacks;
 import Monsters.Monster;
 
 public class AttackSimple implements IAttackBehaviour {
+    String name = "Simple attack";
     @Override
     public void attack(Monster monster1, Monster monster2)
     {
@@ -18,5 +19,9 @@ public class AttackSimple implements IAttackBehaviour {
             System.out.println(monster2.getName() + " was hit by the Simple Attack! It lost " + (int)((10 + monster1.getBonusDamage()) * (100 - monster2.getProtection()) / 100) +  "hp");
             System.out.println(monster2.getName() + "'s hp equals " + monster2.getHp() + "\n");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }

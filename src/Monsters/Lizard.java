@@ -16,8 +16,6 @@ public class Lizard extends Monster {
         super(weaponBehaviour, armorBehaviour);
         this.listOfAttacks.add(new AttackSpeedSlash());
         this.listOfAttacks.add(new AttackSimple());
-        this.swordBehaviour=weaponBehaviour;
-        this.armorBehaviour = armorBehaviour;
         this.setName("The Fastest "+name);
         this.setHp(110);
         this.setProtection(10);

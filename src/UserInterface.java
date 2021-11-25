@@ -7,23 +7,28 @@ public class UserInterface {
     {
         FightFacade fightFacade = new FightFacade();
         BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
-
-        while(true)
+        boolean checker = true;
+        while(checker)
         {
-            System.out.println("Choose what you wish to do by inputing the needed number: \n" +
+            System.out.println("Choose what you wish to do by inputting the needed number: \n" +
                     "1. Watch a random fight \n" +
-                    "2. Go to an arena \n" +
+                    "2. Go to an arena (create a character first) \n" +
                     "3. Exit");
             String userInput = reader.readLine();
-            if(userInput.equals("1"))
-            {
-                fightFacade.randomFight();
+            int userInputInt;
+            try {
+                userInputInt = Integer.parseInt(userInput);
+                switch (userInputInt) {
+                    case 1: fightFacade.randomFight(); break;
+                    case 2: fightFacade.arenaFight(fightFacade.createCharacter());
+                    case 3: checker = false; break;
+                    default:
+                        System.out.println("Impossible choice.");
+                }
             }
-            else if(userInput.equals("3"))
-                break;
-            else
+            catch (Exception e)
             {
-                System.out.println("Please, enter the right number");
+                System.out.println("Please, enter just the number + \n");
             }
         }
 

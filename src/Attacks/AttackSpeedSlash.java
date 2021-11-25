@@ -3,6 +3,7 @@ package Attacks;
 import Monsters.Monster;
 
 public class AttackSpeedSlash implements IAttackBehaviour {
+    String name = "Speed Slash";
     @Override
     public void attack(Monster monster1, Monster monster2)
     {
@@ -18,5 +19,9 @@ public class AttackSpeedSlash implements IAttackBehaviour {
             System.out.println(monster2.getName() + " was hit by the Speed Slash Attack! It lost " + (int)((5 + monster1.getBonusDamage())*(100 - monster2.getProtection())/100) + "hp");
             System.out.println(monster2.getName() + "'s hp equals " + monster2.getHp() + "\n");
         }
+    }
+
+    public String getName() {
+        return name;
     }
 }
